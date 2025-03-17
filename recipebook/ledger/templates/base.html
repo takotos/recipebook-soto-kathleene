@@ -5,7 +5,22 @@
     <title>{% block title %}Recipe Book{% endblock %}</title>
 </head>
 <body>
-    <h1>Recipe Book</h1>
+    <a href="{% url 'ledger:recipe_list' %}"><h1>Recipe Book</h1></a>
+        
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'ledger:logout' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <form method="POST" action="{% url 'ledger:login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    {% endif %}
+
     {% block content %}{% endblock %}
 </body>
 </html>
