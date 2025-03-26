@@ -35,3 +35,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.name
+
+class RecipeImage(models.Model):
+    image = models.ImageField(upload_to='images/')
+    description = models.CharField(max_length=255)
+    name = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='images')

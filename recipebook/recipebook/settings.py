@@ -74,6 +74,9 @@ LOGIN_REDIRECT_URL = '/recipes/list/'
 
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 

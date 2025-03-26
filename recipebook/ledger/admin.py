@@ -2,21 +2,24 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
-from .models import Recipe, RecipeIngredient, Profile
+from .models import Recipe, RecipeIngredient, Profile, RecipeImage
 
 
 class RecipeIngredientInLine(admin.TabularInline):
     model = RecipeIngredient
 
+class RecipeImageInLine(admin.TabularInline):
+    model = RecipeImage 
+
 class RecipeAdmin(admin.ModelAdmin):
-    inlines = [RecipeIngredientInLine,]
+    inlines = [RecipeIngredientInLine, RecipeImageInLine,]
 
 class ProfileInLine(admin.StackedInline):
     model = Profile
     can_delete = False
 
 class UserAdmin(BaseUserAdmin):
-    inlines = [ProfileInLine,] 
+    inlines = [ProfileInLine,]
 
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.unregister(User)
